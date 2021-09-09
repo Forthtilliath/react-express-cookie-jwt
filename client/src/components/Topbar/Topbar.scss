@@ -1,0 +1,95 @@
+@import '../../sass';
+
+.topbarContainer {
+    height: 50px;
+    width: 100%;
+    background-color: #1877f2;
+    @include center();
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    gap:1em;
+    padding: 0 1em;
+
+    .topbarLeft {
+        flex: 3;
+
+        .logo, .logo:visited {
+            font-size: 24px;
+            margin-left: 20px;
+            font-weight: bold;
+            color: #f2f2f2;
+            cursor: pointer;
+        }
+    }
+
+    .topbarCenter {
+        flex: 5;
+
+        .searchBar {
+            width: 100%;
+            height: 30px;
+            background-color: var(--always-white);
+            border-radius: 30px;
+            @include center();
+
+            &:focus-within {
+                box-shadow: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
+                background-color: var(--focus-input);
+            }
+
+            .searchIcon {
+                margin-left: 10px;
+            }
+
+            .searchInput {
+                border: none;
+                width: calc(100% - 40px);
+                background-color: var(--always-white);
+
+                &:focus {
+                    outline: none;
+                    background-color: var(--focus-input);
+                }
+            }
+        }
+    }
+
+    .topbarRight {
+        flex: 4;
+        @include center(space-around);
+        color: var(--base-white);
+
+        .topbarLink {
+            margin-right: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .topbarIcons {
+            display: flex;
+
+            .topbarIconItem {
+                margin-right: 15px;
+                cursor: pointer;
+                position: relative;
+
+                .topbarIconBadge {
+                    @include circle(15);
+                    color: var(--base-white);
+                    background-color: red;
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    @include center(center);
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .topbarImg {
+            @include circle(32);
+            cursor: pointer;
+        }
+    }
+}

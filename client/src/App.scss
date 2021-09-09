@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --base-blue: rgb(24, 119, 242);
+    --base-white: rgb(242, 242, 242);
+
+    --always-white: white;
+
+    --hover-overlay: rgba(255, 255, 255, 0.1);
+    --focus-input: var(--base-white);
+}
+
+*:not(html,body)::-webkit-scrollbar {
+    width: 5px;
+}
+*:not(html,body)::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+*:not(html,body)::-webkit-scrollbar-thumb {
+    background-color: rgb(179, 179, 179);
+    border-radius: 50px;
+}
+*:not(html,body)::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(128, 128, 128);
+}
+
+.focus {
+    --T68779821: 0 0 0 2px var(--always-white), 0 0 0 4px var(--base-blue);
+    -webkit-box-shadow: var(--T68779821);
+    box-shadow: var(--T68779821);
+    background-color: var(--hover-overlay);
+}
+
+
