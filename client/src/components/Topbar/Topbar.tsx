@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../AppContext/Auth.context";
-import UidContext from "../AppContext/index.context";
 
 import "./Topbar.scss";
 

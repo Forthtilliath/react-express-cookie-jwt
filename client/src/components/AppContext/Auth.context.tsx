@@ -1,13 +1,8 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-const AuthContext = createContext({ loggedIn: false, getLoggedIn: () => {} });
+const AuthContext = createContext({ loggedIn: false, getLoggedIn: () => { } });
 
-// type Props = {
-//   children?: JSX.Element | JSX.Element[];
-// };
-
-// export const AuthContextProvider = ({ children }: Props) => {
 export const AuthContextProvider = ({
   children,
 }: JSX.ElementChildrenAttribute) => {

@@ -22,7 +22,6 @@ const Logout = () => {
     console.log(document.cookie);
     axios
       .get("/api/logout")
-      // .get("http://localhost:5001/api/logout")
       .then((res) => res.data)
       .then(() => getLoggedIn())
       .then(() => history.push("/"));
