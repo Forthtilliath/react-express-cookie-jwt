@@ -17,9 +17,8 @@ export const AuthContextProvider = ({
 }: JSX.ElementChildrenAttribute) => {
   const [connexion, setConnexion] = useState(initialContext);
 
-  const getConnexion = () => {
-    console.log('getConnexion');
-    axios
+  const getConnexion = async () => {
+    await axios
       .get("/api/jwt")
       .then((res) => res.data)
       .then(setConnexion);
