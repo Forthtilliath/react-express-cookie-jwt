@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { empty } from "../components/utils";
+import { useContext, useEffect } from "react";
 import AuthContext from "../components/AppContext/Auth.context";
 import { useHistory } from "react-router";
 
@@ -22,6 +21,7 @@ const Login = () => {
       .get("/api/login")
       .then(() => getConnexion())
       .then(() => history.push("/"));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

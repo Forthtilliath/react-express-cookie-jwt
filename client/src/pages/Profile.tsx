@@ -18,6 +18,7 @@ const Profile = () => {
         getConnexion();
         history.push("/");
       });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <div>Profile {reserved}</div>;
 };
