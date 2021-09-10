@@ -8,23 +8,23 @@ import { useContext } from "react";
 import Profile from "./pages/Profile";
 
 const Router = () => {
-  const { loggedIn } = useContext(AuthContext);
+  const { connexion: {loggedIn} } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
       <Topbar />
       <Switch>
-        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/" component={Home}/>
         {loggedIn ? (
-          <>
-            <Route exact path="/logout" component={Logout}></Route>
-            <Route exact path="/profil" component={Profile}></Route>
-          </>
+          <Switch>
+            <Route exact path="/logout" component={Logout}/>
+            <Route exact path="/profil" component={Profile}/>
+          </Switch>
         ) : (
-          <>
-            <Route exact path="/login" component={Login}></Route>
-            <Route exact path="/profil" component={Profile}></Route>
-          </>
+          <Switch>
+            <Route exact path="/login" component={Login}/>
+            <Route exact path="/profil" component={Profile}/>
+          </Switch>
         )}
         <Redirect to="/" />
       </Switch>

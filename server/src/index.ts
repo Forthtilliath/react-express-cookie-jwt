@@ -46,6 +46,7 @@ app.get("/api/login", (_req, res) => {
 // Vérification connexion
 app.get("/api/jwt", (req, res) => {
   try {
+    console.log('cookies',req.cookies);
     const token = req.cookies.token;
     if (!token) return res.json({ loggedIn: false });
 

@@ -5,7 +5,7 @@ import AuthContext from "../AppContext/Auth.context";
 import "./Topbar.scss";
 
 const Topbar = () => {
-  const { loggedIn } = useContext(AuthContext);
+  const { connexion: {loggedIn} } = useContext(AuthContext);
 
   return (
     <div className="topbarContainer">

@@ -1,26 +1,36 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
-const AuthContext = createContext({ loggedIn: false, getLoggedIn: () => { } });
+interface IConnexionContext {
+  loggedIn: boolean,
+  user?: {
+    userId: string,
+    username: string
+  }
+}
+
+const initialContext:IConnexionContext = { loggedIn: false };
+const AuthContext = createContext({ connexion: initialContext, getConnexion: () => {} });
 
 export const AuthContextProvider = ({
   children,
 }: JSX.ElementChildrenAttribute) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [connexion, setConnexion] = useState(initialContext);
 
-  const getLoggedIn = () => {
+  const getConnexion = () => {
+    console.log('getConnexion');
     axios
       .get("/api/jwt")
       .then((res) => res.data)
-      .then(setLoggedIn);
+      .then(setConnexion);
   };
 
   useEffect(() => {
-    getLoggedIn();
+    getConnexion();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ loggedIn, getLoggedIn }}>
+    <AuthContext.Provider value={{ connexion, getConnexion }}>
       {children}
     </AuthContext.Provider>
   );

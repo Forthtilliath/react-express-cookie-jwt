@@ -4,29 +4,27 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import AuthContext from "../../components/AppContext/Auth.context";
 
-const UserData = ({ log: { user } }: any) => (
+const UserData = ({user}:any) => (
   <>
-    {/* <p>{user.userId}</p>
-    <p>{user.username}</p> */}
-    Connecté
+    <p>Connecté</p>
+    <p>{user.userId}</p>
+    <p>{user.username}</p>
   </>
 );
 
 const NotLogged = () => <p>Utilisateur non connecté</p>;
 
 const Home = () => {
-  const [log, setLog] = useState({ loggedIn: false });
-  const { loggedIn } = useContext(AuthContext);
-  
+  const { connexion } = useContext(AuthContext);
 
   // useEffect(() => {
-    
+
   // }, []);
 
   return (
     <>
       {/* {!empty(log) && log.loggedIn ? <UserData log={log} /> : <NotLogged />} */}
-      {loggedIn ? <UserData log={log} /> : <NotLogged />}
+      {connexion.loggedIn ? <UserData user={connexion.user} /> : <NotLogged />}
     </>
   );
 };

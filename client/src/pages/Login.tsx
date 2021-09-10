@@ -4,28 +4,32 @@ import { empty } from "../components/utils";
 import AuthContext from "../components/AppContext/Auth.context";
 import { useHistory } from "react-router";
 
-const UserData = ({ log: { user } }: any) => (
+const UserData = ({ user }: any) => (
   <>
     <p>Login</p>
-    {/* <p>{user.userId}</p>
-    <p>{user.username}</p> */}
+    <p>{user?.userId}</p>
+    <p>{user?.username}</p>
   </>
 );
 
 const Login = () => {
-  const [log, setLog] = useState({});
-  const { getLoggedIn } = useContext(AuthContext);
+  const { connexion:{user}, getConnexion } = useContext(AuthContext);
+  // const { connexion: { user }, getConnexion } = useContext(AuthContext);
   const history = useHistory();
 
   useEffect(() => {
     axios
       .get("/api/login")
-      .then((res) => res.data)
-      .then(() => getLoggedIn())
+      .then(() => getConnexion())
       .then(() => history.push("/"));
   }, []);
 
-  return <div>{!empty(log) && <UserData log={log} />}</div>;
+  return (
+    <>
+      {/* {!empty(log) && log.loggedIn ? <UserData log={log} /> : <NotLogged />} */}
+      <UserData user={user} />
+    </>
+  );
 };
 
 export default Login;
