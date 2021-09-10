@@ -15,11 +15,18 @@ const Topbar = () => {
         </div>
       </NavLink>
       {loggedIn ? (
-        <NavLink exact to="/logout">
-          <div className="logo">
-            <h3>Logout</h3>
-          </div>
-        </NavLink>
+        <>
+          <NavLink exact to="/profil">
+            <div className="logo">
+              <h3>Profil</h3>
+            </div>
+          </NavLink>
+          <NavLink exact to="/logout">
+            <div className="logo">
+              <h3>Logout</h3>
+            </div>
+          </NavLink>
+        </>
       ) : (
         <NavLink exact to="/login">
           <div className="logo">

@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import AuthContext from "./components/AppContext/Auth.context";
 import { useContext } from "react";
+import Profile from "./pages/Profile";
 
 const Router = () => {
   const { loggedIn } = useContext(AuthContext);
@@ -15,9 +16,15 @@ const Router = () => {
       <Switch>
         <Route exact path="/" component={Home}></Route>
         {loggedIn ? (
-          <Route exact path="/logout" component={Logout}></Route>
+          <>
+            <Route exact path="/logout" component={Logout}></Route>
+            <Route exact path="/profil" component={Profile}></Route>
+          </>
         ) : (
-          <Route exact path="/login" component={Login}></Route>
+          <>
+            <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/profil" component={Profile}></Route>
+          </>
         )}
         <Redirect to="/" />
       </Switch>

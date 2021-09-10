@@ -15,15 +15,15 @@ API.get("http://httpbin.org/get?answer=42", {
   },
 });
 
-API.interceptors.request.use((req) => {
-  if (localStorage.getItem(COOKIE_NAME) !== null) {
-    req.headers.Authorization = `Bearer ${
-      JSON.parse(localStorage.getItem(COOKIE_NAME) as string).token
-    }`;
-  }
+// API.interceptors.request.use((req) => {
+//   if (localStorage.getItem(COOKIE_NAME) !== null) {
+//     req.headers.Authorization = `Bearer ${
+//       JSON.parse(localStorage.getItem(COOKIE_NAME) as string).token
+//     }`;
+//   }
 
-  return req;
-});
+//   return req;
+// });
 
 export const fetchPost = (id: string) => API.get(`/posts/${id}`);
 export const fetchPosts = (id: string) => API.get(`/posts/timeline/${id}`);
