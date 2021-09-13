@@ -2,14 +2,14 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 interface IConnexionContext {
-  loggedIn: boolean,
+  loggedIn: boolean | undefined,
   user?: {
     userId: string,
     username: string
   }
 }
 
-const initialContext:IConnexionContext = { loggedIn: false };
+const initialContext:IConnexionContext = { loggedIn: undefined };
 const AuthContext = createContext({ connexion: initialContext, getConnexion: () => {} });
 
 export const AuthContextProvider = ({
@@ -21,7 +21,7 @@ export const AuthContextProvider = ({
     await axios
       .get("/api/jwt")
       .then((res) => res.data)
-      .then(setConnexion);
+      .then(setConnexion)
   };
 
   useEffect(() => {

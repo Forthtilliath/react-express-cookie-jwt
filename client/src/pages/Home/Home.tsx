@@ -4,7 +4,7 @@ import AuthContext from "../../components/AppContext/Auth.context";
 
 const UserData = ({user}:any) => (
   <>
-    <p>Connecté</p>
+    <p>Utilisateur connecté</p>
     <p>{user.userId}</p>
     <p>{user.username}</p>
   </>
