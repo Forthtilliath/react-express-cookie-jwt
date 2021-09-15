@@ -2,36 +2,45 @@ import { verify } from "jsonwebtoken";
 import { getToken } from "./../../utils/connexion";
 import { Request, Response } from "express";
 
+/**
+ * Supprime le cookie de l'utilisateur
+ */
 export const logout = (_req: Request, res: Response) => {
-  res.cookie("token", "", { maxAge: 0, httpOnly: true }).send();
+  res
+    .cookie(process.env.COOKIE_NAME as string, "", {
+      maxAge: 0,
+      httpOnly: true,
+    })
+    .send();
 };
 
+/**
+ * Génère un cookie pour l'utilisateur
+ */
 export const login = (_req: Request, res: Response) => {
   const token = getToken({ userId: 12345, username: "jteprout" });
 
-  res.cookie("token", token, { maxAge: 15 * 60 * 1000, httpOnly: true }).send();
+  res
+    .cookie(process.env.COOKIE_NAME as string, token, {
+      maxAge: 15 * 60 * 1000,
+      httpOnly: true,
+    })
+    .send();
 };
 
+/**
+ * Envoit les donnnées de l'utilisateur si l'utilisateur est connecté
+ */
 export const jwt = (req: Request, res: Response) => {
-  try {
-    console.log("cookies", req.cookies);
-    const token = req.cookies.token;
-    if (!token) return res.json({ loggedIn: false });
-
-    verify(token, process.env.SECRET_TOKEN as string);
-    res.json({ loggedIn: true, user: { userId: 12345, username: "jteprout" } });
-  } catch (err) {
-    res.json({ loggedIn: false });
-  }
-
-    
   const defaultState = { loggedIn: false };
   try {
-    const token = req.cookies.token;
-
+    const token = req.cookies[process.env.COOKIE_NAME as string];
     if (!token) return res.send(defaultState);
 
-    const decodedToken:IToken = verify(token, process.env.SECRET_TOKEN as string) as IToken;
+    const decodedToken: IToken = verify(
+      token,
+      process.env.SECRET_TOKEN as string
+    ) as IToken;
     const { iat, exp, ...user } = decodedToken;
 
     res.send({ loggedIn: true, user });
@@ -41,8 +50,8 @@ export const jwt = (req: Request, res: Response) => {
 };
 
 interface IToken {
-    iat: number,
-    exp: number,
-    userId: string,
-    username: string
+  iat: number;
+  exp: number;
+  userId: string;
+  username: string;
 }

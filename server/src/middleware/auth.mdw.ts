@@ -7,7 +7,7 @@ import { JwtPayload, sign, verify } from "jsonwebtoken";
  */
 export const checkUser = (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = req.cookies.token;
+    const token = req.cookies[process.env.COOKIE_NAME as string];
     if (!token) res.locals.user = null;
 
     const verified = verify(
@@ -21,7 +21,7 @@ export const checkUser = (req: Request, res: Response, next: NextFunction) => {
     const newToken = sign(user, process.env.SECRET_TOKEN as string, {
       expiresIn: "4h",
     });
-    res.cookie("token", newToken, {
+    res.cookie(process.env.COOKIE_NAME as string, newToken, {
       httpOnly: true,
       maxAge: 4 * 60 * 60 * 1000,
     });
