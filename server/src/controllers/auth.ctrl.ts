@@ -1,5 +1,5 @@
 import { verify } from "jsonwebtoken";
-import { getToken } from "./../../utils/connexion";
+import { getToken } from "../utils/connexion";
 import { Request, Response } from "express";
 
 /**

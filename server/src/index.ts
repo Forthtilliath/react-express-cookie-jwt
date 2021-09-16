@@ -1,5 +1,5 @@
 import { verify } from "jsonwebtoken";
-import { getToken } from "./../utils/connexion";
+import { getToken } from "./utils/connexion";
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
